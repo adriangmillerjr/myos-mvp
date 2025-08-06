@@ -1,20 +1,11 @@
-// app/layout.tsx
+// File: app/chat/layout.tsx
+import '../globals.css'; // Adjust path if needed
 
-import './globals.css'; // optional: only if you plan to use global styles
-
-export const metadata = {
-  title: 'MyOS – Your Life, Powered by AI',
-  description: 'Your personalized operating system for clarity, automation, and execution.',
-};
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ChatLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
+    <section className="min-h-screen bg-black text-white">
+      {/* You can wrap with nav, sidebar, etc. */}
+      {children}
+    </section>
   );
 }
