@@ -1,17 +1,35 @@
-import '@/styles/globals.css'
-import Sidebar from '@/components/layout/Sidebar'
-import Topbar from '@/components/layout/Topbar'
+/*
+ * Root layout for the MyOS MVP application. This component defines
+ * the global layout structure, including a top bar and sidebar.
+ * It is marked as a client component to allow interactive state (e.g. sidebar collapse).
+ */
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+'use client';
+
+import { ReactNode, useState } from 'react';
+import Sidebar from '../components/Sidebar';
+import Topbar from '../components/Topbar';
+import '../styles/globals.css';
+
+export default function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const [collapsed, setCollapsed] = useState(false);
+  const toggleSidebar = () => setCollapsed((prev) => !prev);
   return (
     <html lang="en">
-      <body className="flex bg-black text-white">
-        <Sidebar />
-        <div className="flex flex-col flex-1 min-h-screen">
-          <Topbar />
-          <main className="p-6">{children}</main>
+      <body className="min-h-screen flex bg-background text-foreground">
+        {/* Sidebar */}
+        <Sidebar collapsed={collapsed} />
+        <div className="flex-1 flex flex-col">
+          {/* Topbar */}
+          <Topbar onToggleSidebar={toggleSidebar} />
+          {/* Main content */}
+          <main className="flex-1 overflow-y-auto p-6">{children}</main>
         </div>
       </body>
     </html>
-  )
+  );
 }

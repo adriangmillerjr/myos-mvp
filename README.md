@@ -1,15 +1,38 @@
 # MyOS MVP
 
-branch: myos-mvp
+This repository contains the source code for **MyOS**, an AI‑powered personal operating system. It includes voice‑based chat, a dynamic dashboard, profile management with multiple tabs, and Supabase authentication. The UI is built with Next.js 13, React, Tailwind CSS, and shadcn/ui for a sleek, modern appearance inspired by the Landin template.
 
-Private system build for myOS — an AI-powered personal operating system that helps users gain clarity, automate tasks, and align daily execution with long-term purpose.
+## Features
 
-License
+- **Voice Input** – Optional real‑time speech‑to‑text using the browser’s `SpeechRecognition` API.
+- **Dark / Light Theme** – Uses CSS variables with Tailwind to easily toggle between light and dark modes.
+- **Collapsible Sidebar & Topbar** – Navigate between pages using a responsive sidebar and top bar.
+- **Profile Tabs** – Manage personal information, vision, values, advisors, and more with a tabbed interface.
+- **Chat History** – Persist your conversations in Supabase for continuity across sessions.
+- **Supabase Auth** – Secure user authentication integrated out of the box.
+
+## Getting Started
+
+1. Clone the repository and install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Create a `.env.local` file based on `.env.example` and enter your Supabase credentials.
+
+3. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open `http://localhost:3000` in your browser to see the application running.
+
+## Deployment
+
+This project is ready to be deployed to Vercel. Ensure your environment variables are configured in the Vercel dashboard. Use `npm run build` to create a production build.
+
+## License
+
 All rights reserved.
-
-This repository and all its contents are proprietary.
-No part of this codebase may be used, reproduced, distributed, reverse engineered, or transmitted in any form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the owner.
-
-Unauthorized use is a violation of applicable laws and will be pursued accordingly.
-
-Getting started with Supabase, OpenRouter, and ProfileGPT onboarding.

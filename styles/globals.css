@@ -2,6 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-black text-white;
+/* Base layer defines CSS variables used throughout the application. */
+@layer base {
+  :root {
+    --background: 220 13% 95%; /* soft gray background for light mode */
+    --foreground: 210 10% 23%; /* dark text for light mode */
+  }
+
+  .dark {
+    --background: 210 10% 23%; /* dark background for dark mode */
+    --foreground: 220 13% 95%; /* light text for dark mode */
+  }
+
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    @apply font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }

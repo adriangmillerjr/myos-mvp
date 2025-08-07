@@ -1,1 +1,0 @@
--- SQL placeholder for user/profile/message tables

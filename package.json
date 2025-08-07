@@ -6,26 +6,25 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "vercel-build": "next build"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.53.0",
-    "axios": "^1.11.0",
-    "lucide-react": "^0.537.0",
-    "next": "^15.4.5",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "@supabase/supabase-js": "^2.38.1",
+    "@types/node": "^20.4.2",
+    "@types/react": "^18.2.14",
+    "@types/react-dom": "^18.2.6",
+    "autoprefixer": "^10.4.16",
+    "lucide-react": "^0.266.0",
+    "next": "^13.5.0",
+    "postcss": "^8.4.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.4.1"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.11",
-    "@types/node": "^24.2.0",
-    "@types/react": "^19.1.9",
-    "@types/react-dom": "^19.1.7",
-    "autoprefixer": "^10.4.21",
-    "eslint": "^9.32.0",
-    "postcss": "^8.5.6",
-    "prettier": "^3.6.2",
-    "tailwindcss": "^4.1.11",
-    "typescript": "^5.9.2"
+    "@types/node": "^20.4.2",
+    "@types/react": "^18.2.14",
+    "@types/react-dom": "^18.2.6",
+    "typescript": "^5.2.2"
   }
 }
