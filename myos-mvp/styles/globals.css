@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  /* Use custom theme colors defined in tailwind.config.ts */
+  @apply bg-background text-foreground;
+  font-family: Inter, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Make anchor tags blend nicely with the design */
+a {
+  /* Use the defined primary palette for link colors. The hover state uses a
+     slightly darker variant rather than a non‑existent 400 shade to avoid
+     Tailwind compilation errors. */
+  @apply text-primary-500 hover:text-primary-600 transition-colors;
+}
+
+/* Default input and textarea styling to match cards */
+input,
+textarea,
+select {
+  @apply bg-background-light border border-white/10 rounded px-3 py-2 text-sm text-foreground placeholder:text-gray-500 focus:outline-none focus:border-primary-500;
+}
+
+button {
+  @apply text-sm font-medium rounded transition-colors;
+}
+
+/* Scrollbar styling for better UX */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: theme('colors.background.light');
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: theme('colors.primary.600');
+  border-radius: 4px;
+}
