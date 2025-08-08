@@ -1,0 +1,169 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* LifeOS.ai Design System - Sophisticated Dark Theme */
+
+@layer base {
+  :root {
+    /* FOUNDERS BLACK THEME */
+    --background: 0 0% 0%;              /* Jet Black */
+    --foreground: 0 0% 100%;            /* White text */
+    
+    /* Primary brand colors - Blush Taupe */
+    --primary: 18 15% 82%;              /* Blush Taupe #D7B8AD */
+    --primary-foreground: 0 0% 0%;      /* Black text on primary */
+    
+    /* Refined surfaces */
+    --card: 0 0% 0%;                    /* Black cards */
+    --card-foreground: 0 0% 100%;       /* White text on cards */
+    --surface: 0 0% 3%;                 /* Very dark surface */
+    --surface-secondary: 0 0% 6%;       /* Slightly lighter surface */
+    
+    /* Interactive elements */
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
+    
+    --secondary: 0 0% 5%;               /* Dark secondary */
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 0 0% 8%;                   /* Muted backgrounds */
+    --muted-foreground: 0 0% 60%;       /* Muted text */
+    
+    /* Sophisticated accent - Blush Taupe */
+    --accent: 18 15% 82%;               /* Blush Taupe accent */
+    --accent-foreground: 0 0% 0%;       /* Black text on accent */
+    --accent-soft: 18 10% 20%;          /* Darker taupe */
+    
+    /* Status colors */
+    --destructive: 0 84% 60%;           /* Red */
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 76% 36%;             /* Green */
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;              /* Orange */
+    --warning-foreground: 0 0% 0%;
+    
+    /* Borders and inputs */
+    --border: 0 0% 15%;                 /* Dark borders */
+    --input: 0 0% 10%;                  /* Input backgrounds */
+    --ring: 18 15% 82%;                 /* Taupe focus rings */
+    
+    /* Chat colors */
+    --chat-user: 18 15% 82%;            /* User messages in taupe */
+    --chat-assistant: 0 0% 8%;          /* Assistant in dark gray */
+    --chat-system: 0 0% 12%;            /* System messages */
+    
+    /* Taupe-tinted shadows */
+    --shadow-soft: 0 2px 8px rgba(215, 184, 173, 0.1);
+    --shadow-medium: 0 4px 12px rgba(215, 184, 173, 0.15), 0 2px 4px rgba(215, 184, 173, 0.1);
+    --shadow-large: 0 10px 24px rgba(215, 184, 173, 0.2), 0 4px 8px rgba(215, 184, 173, 0.15);
+    
+    /* Smooth transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --radius: 8px;
+
+    /* Sidebar with founders black theme */
+    --sidebar-background: 0 0% 0%;      /* Black sidebar */
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 18 15% 82%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 8%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 18 15% 82%;
+  }
+
+  .light {
+    /* Light mode fallback (optional) */
+    --background: 0 0% 100%;
+    --foreground: 210 24% 8%;
+    
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 210 24% 8%;
+    --surface: 210 11% 99%;
+    --surface-secondary: 210 11% 97%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 24% 8%;
+    
+    --secondary: 210 11% 96%;
+    --secondary-foreground: 210 24% 8%;
+    
+    --muted: 210 11% 96%;
+    --muted-foreground: 210 11% 45%;
+    
+    --accent: 210 11% 96%;
+    --accent-foreground: 210 24% 8%;
+    --accent-soft: 210 11% 98%;
+    
+    --border: 210 11% 91%;
+    --input: 210 11% 91%;
+    --ring: 221 83% 53%;
+    
+    --chat-user: 221 83% 53%;
+    --chat-assistant: 210 11% 97%;
+    --chat-system: 210 11% 95%;
+    
+    --sidebar-background: 210 11% 98%;
+    --sidebar-foreground: 210 24% 8%;
+    --sidebar-primary: 221 83% 53%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 210 11% 95%;
+    --sidebar-accent-foreground: 210 24% 8%;
+    --sidebar-border: 210 11% 91%;
+    --sidebar-ring: 221 83% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+}
+
+/* Sophisticated component styles */
+@layer components {
+  .lifeos-container {
+    @apply max-w-7xl mx-auto px-6;
+  }
+  
+  .lifeos-card {
+    @apply bg-card border border-border rounded-lg shadow-soft;
+  }
+  
+  .lifeos-button-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-colors;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring;
+    @apply disabled:pointer-events-none disabled:opacity-50;
+  }
+  
+  .lifeos-button-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors;
+    @apply border border-border;
+  }
+  
+  .lifeos-input {
+    @apply bg-background border border-input text-foreground;
+    @apply focus:ring-2 focus:ring-ring focus:border-transparent;
+    @apply placeholder:text-muted-foreground;
+  }
+  
+  .lifeos-text-gradient {
+    @apply bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent;
+  }
+}
+
+/* Inter font integration */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');

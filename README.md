@@ -1,38 +1,73 @@
-# MyOS MVP
+# Welcome to your Lovable project
 
-This repository contains the source code for **MyOS**, an AI‑powered personal operating system. It includes voice‑based chat, a dynamic dashboard, profile management with multiple tabs, and Supabase authentication. The UI is built with Next.js 13, React, Tailwind CSS, and shadcn/ui for a sleek, modern appearance inspired by the Landin template.
+## Project info
 
-## Features
+**URL**: https://lovable.dev/projects/8b797801-f7c1-4bd7-ae37-c48f6bc270d2
 
-- **Voice Input** – Optional real‑time speech‑to‑text using the browser’s `SpeechRecognition` API.
-- **Dark / Light Theme** – Uses CSS variables with Tailwind to easily toggle between light and dark modes.
-- **Collapsible Sidebar & Topbar** – Navigate between pages using a responsive sidebar and top bar.
-- **Profile Tabs** – Manage personal information, vision, values, advisors, and more with a tabbed interface.
-- **Chat History** – Persist your conversations in Supabase for continuity across sessions.
-- **Supabase Auth** – Secure user authentication integrated out of the box.
+## How can I edit this code?
 
-## Getting Started
+There are several ways of editing your application.
 
-1. Clone the repository and install dependencies:
+**Use Lovable**
 
-   ```bash
-   npm install
-   ```
+Simply visit the [Lovable Project](https://lovable.dev/projects/8b797801-f7c1-4bd7-ae37-c48f6bc270d2) and start prompting.
 
-2. Create a `.env.local` file based on `.env.example` and enter your Supabase credentials.
+Changes made via Lovable will be committed automatically to this repo.
 
-3. Start the development server:
+**Use your preferred IDE**
 
-   ```bash
-   npm run dev
-   ```
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
-4. Open `http://localhost:3000` in your browser to see the application running.
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-## Deployment
+Follow these steps:
 
-This project is ready to be deployed to Vercel. Ensure your environment variables are configured in the Vercel dashboard. Use `npm run build` to create a production build.
+```sh
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
 
-## License
+# Step 2: Navigate to the project directory.
+cd <YOUR_PROJECT_NAME>
 
-All rights reserved.
+# Step 3: Install the necessary dependencies.
+npm i
+
+# Step 4: Start the development server with auto-reloading and an instant preview.
+npm run dev
+```
+
+**Edit a file directly in GitHub**
+
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
+
+**Use GitHub Codespaces**
+
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
+
+## What technologies are used for this project?
+
+This project is built with:
+
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
+
+## How can I deploy this project?
+
+Simply open [Lovable](https://lovable.dev/projects/8b797801-f7c1-4bd7-ae37-c48f6bc270d2) and click on Share -> Publish.
+
+## Can I connect a custom domain to my Lovable project?
+
+Yes, you can!
+
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
