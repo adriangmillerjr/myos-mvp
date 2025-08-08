@@ -9,6 +9,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import VoiceInput from '../../components/VoiceInput';
+import { supabase } from '../../lib/supabase';
 
 interface Message {
   id: number;
@@ -19,6 +20,8 @@ interface Message {
 export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
   const listRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -26,8 +29,37 @@ export default function ChatPage() {
     listRef.current?.scrollTo({ top: listRef.current.scrollHeight });
   }, [messages]);
 
+  useEffect(() => {
+    // Get current session and user
+    const fetchSession = async () => {
+      const { data } = await supabase.auth.getSession();
+      const currentUser = data.session?.user ?? null;
+      setUser(currentUser);
+      setLoading(false);
+      if (currentUser) {
+        // Fetch messages for this user
+        const { data: messagesData, error } = await supabase
+          .from('messages')
+          .select('*')
+          .eq('user_id', currentUser.id)
+          .order('created_at', { ascending: true });
+        if (!error && messagesData) {
+          // Map supabase rows to Message type
+          const mapped = messagesData.map((row: any) => ({
+            id: row.id,
+            role: row.role || 'user',
+            content: row.content,
+          })) as Message[];
+          setMessages(mapped);
+        }
+      }
+    };
+    fetchSession();
+  }, []);
+
   const handleSubmit = async () => {
     if (!input.trim()) return;
+    if (!user) return;
     const newMessage: Message = {
       id: messages.length + 1,
       role: 'user',
@@ -35,22 +67,40 @@ export default function ChatPage() {
     };
     setMessages((prev) => [...prev, newMessage]);
     setInput('');
-    // Simulate assistant reply
-    setTimeout(() => {
+    // Insert into Supabase
+    await supabase.from('messages').insert({
+      user_id: user.id,
+      content: input,
+      role: 'user',
+      created_at: new Date().toISOString(),
+    });
+    // Simulate assistant reply (you can replace this with actual AI call)
+    setTimeout(async () => {
+      const replyContent = 'This is a demo reply.';
       setMessages((prev) => [
         ...prev,
         {
           id: prev.length + 1,
           role: 'assistant',
-          content: 'This is a demo reply.',
+          content: replyContent,
         },
       ]);
+      await supabase.from('messages').insert({
+        user_id: user.id,
+        content: replyContent,
+        role: 'assistant',
+        created_at: new Date().toISOString(),
+      });
     }, 1000);
   };
 
   const handleVoiceInput = (text: string) => {
     setInput((prev) => (prev ? prev + ' ' + text : text));
   };
+
+  if (loading) {
+    return <p>Loading chat...</p>;
+  }
 
   return (
     <div className="flex flex-col h-full max-h-[calc(100vh-4rem)]">

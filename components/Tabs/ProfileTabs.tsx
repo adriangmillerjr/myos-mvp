@@ -5,13 +5,16 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+import { useEffect } from 'react';
+import { supabase } from '../../lib/supabase';
 
 interface ProfileTabsProps {
-  // Optionally accept initial data when integrating with Supabase.
+  user: any;
 }
 
-export default function ProfileTabs(_props: ProfileTabsProps) {
+export default function ProfileTabs({ user }: ProfileTabsProps) {
   const tabs = [
     'Personal Info',
     'Vision',
@@ -21,6 +24,28 @@ export default function ProfileTabs(_props: ProfileTabsProps) {
     'Knowledge',
   ];
   const [activeTab, setActiveTab] = useState('Personal Info');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [vision, setVision] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProfile = async () => {
+      if (!user) return;
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single();
+      if (!error && data) {
+        setName(data.name || '');
+        setEmail(data.email || '');
+        setVision(data.vision || '');
+      }
+      setLoading(false);
+    };
+    loadProfile();
+  }, [user]);
 
   return (
     <div>
@@ -40,19 +65,55 @@ export default function ProfileTabs(_props: ProfileTabsProps) {
         ))}
       </div>
       <div>
-        {activeTab === 'Personal Info' && <PersonalInfoForm />}
-        {activeTab === 'Vision' && <VisionForm />}
-        {['Values', 'Inner Boardroom', 'Advisors', 'Knowledge'].includes(
-          activeTab
-        ) && <Placeholder tab={activeTab} />}
+        {loading && <p>Loading profile...</p>}
+        {!loading && activeTab === 'Personal Info' && (
+          <PersonalInfoForm
+            name={name}
+            setName={setName}
+            email={email}
+            setEmail={setEmail}
+            user={user}
+          />
+        )}
+        {!loading && activeTab === 'Vision' && (
+          <VisionForm
+            vision={vision}
+            setVision={setVision}
+            user={user}
+          />
+        )}
+        {!loading &&
+          ['Values', 'Inner Boardroom', 'Advisors', 'Knowledge'].includes(
+            activeTab
+          ) && <Placeholder tab={activeTab} />}
       </div>
     </div>
   );
 }
 
-function PersonalInfoForm() {
+function PersonalInfoForm({
+  name,
+  setName,
+  email,
+  setEmail,
+  user,
+}: {
+  name: string;
+  setName: (val: string) => void;
+  email: string;
+  setEmail: (val: string) => void;
+  user: any;
+}) {
+  const handleSave = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!user) return;
+    await supabase
+      .from('profiles')
+      .upsert({ id: user.id, name, email }, { onConflict: 'id' });
+    alert('Profile saved');
+  };
   return (
-    <form className="space-y-4">
+    <form onSubmit={handleSave} className="space-y-4">
       <div>
         <label className="block text-sm mb-1" htmlFor="name">
           Name
@@ -62,6 +123,8 @@ function PersonalInfoForm() {
           type="text"
           className="w-full p-3 rounded-lg bg-accent-2 text-foreground focus:outline-none"
           placeholder="Your full name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
       </div>
       <div>
@@ -73,6 +136,8 @@ function PersonalInfoForm() {
           type="email"
           className="w-full p-3 rounded-lg bg-accent-2 text-foreground focus:outline-none"
           placeholder="you@example.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <button
@@ -85,9 +150,25 @@ function PersonalInfoForm() {
   );
 }
 
-function VisionForm() {
+function VisionForm({
+  vision,
+  setVision,
+  user,
+}: {
+  vision: string;
+  setVision: (val: string) => void;
+  user: any;
+}) {
+  const handleSave = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!user) return;
+    await supabase
+      .from('profiles')
+      .upsert({ id: user.id, vision }, { onConflict: 'id' });
+    alert('Vision saved');
+  };
   return (
-    <form className="space-y-4">
+    <form onSubmit={handleSave} className="space-y-4">
       <div>
         <label className="block text-sm mb-1" htmlFor="vision">
           Vision Statement
@@ -96,6 +177,8 @@ function VisionForm() {
           id="vision"
           className="w-full p-3 h-32 rounded-lg bg-accent-2 text-foreground focus:outline-none"
           placeholder="Describe your vision..."
+          value={vision}
+          onChange={(e) => setVision(e.target.value)}
         />
       </div>
       <button

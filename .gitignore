@@ -1,0 +1,13 @@
+# Environment
+.env*
+.supabase
+
+# Build / Cache
+.next
+out
+node_modules
+dist
+
+# System / IDE
+.DS_Store
+.vscode
