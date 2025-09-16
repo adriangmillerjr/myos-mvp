@@ -6,33 +6,32 @@
 
 @layer base {
   :root {
-    /* Core colors - Landing defaults to dark */
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    /* Core colors */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
     
     /* Surface colors */
-    --card: 240 3.7% 15.9%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
     
-    --popover: 240 3.7% 15.9%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
     
-    /* Brand colors - Deep blue with glow accents */
+    /* Brand colors - MyOS Blue theme */
     --primary: 221 83% 53%;
     --primary-foreground: 0 0% 98%;
-    --primary-muted: 221 83% 53% / 0.2;
-    --primary-glow: 221 83% 63%;
+    --primary-muted: 221 83% 53% / 0.1;
     
     /* Secondary colors */
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
     
     /* Neutral colors */
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
     
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
     
     /* Status colors */
     --destructive: 0 84.2% 60.2%;
@@ -45,15 +44,14 @@
     --warning-foreground: 0 0% 98%;
     
     /* UI colors */
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
     --ring: 221 83% 53%;
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(221 83% 53%), hsl(221 83% 63%));
-    --gradient-secondary: linear-gradient(135deg, hsl(240 3.7% 15.9%), hsl(240 3.7% 20%));
+    --gradient-secondary: linear-gradient(135deg, hsl(240 4.8% 95.9%), hsl(240 4.8% 90%));
     --gradient-hero: linear-gradient(135deg, hsl(221 83% 53%), hsl(262 83% 58%));
-    --gradient-dark: linear-gradient(135deg, hsl(240 10% 3.9%), hsl(240 15% 6%));
     
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 hsl(240 5.9% 10% / 0.05);
@@ -149,27 +147,5 @@
 
   body {
     @apply bg-background text-foreground;
-  }
-
-  /* Focus styles for accessibility */
-  *:focus-visible {
-    @apply outline-2 outline-offset-2 outline-primary;
-  }
-
-  /* Smooth scrolling for anchor links */
-  html {
-    scroll-behavior: smooth;
-  }
-
-  /* Reduced motion for accessibility */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
   }
 }
